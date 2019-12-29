@@ -5,7 +5,7 @@ Primate configurations for NixOS
 models from example at https://github.com/jluttine/nixos-configuration
 
 * Usage
-#+BEGEIN_SRC
+#+BEGIN_SRC
 nix-shell -p yadm -p git
 sudo yadm clone https://github.com/RomanShestakov/nix-configuration.git -w /etc/nixos
 exit
