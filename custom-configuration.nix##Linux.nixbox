@@ -1,6 +1,5 @@
-{ users, pkgs }:
+{ users, pkgs, ... }:
 {
-  hostName = "nixbox";
-  extraPackages = with pkgs; [
+  environment.SystemPackages = with pkgs; [
   ];
 }
