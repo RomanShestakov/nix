@@ -1,0 +1,8 @@
+{ users, pkgs } :
+  {
+  hostName = "nixbox";
+
+  extraPackages = with pkgs: [
+  ];
+
+  }
