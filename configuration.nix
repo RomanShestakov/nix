@@ -22,22 +22,31 @@
 
   boot.kernelParams = [ "cma=32M" ];
   boot.cleanTmpDir = true;
+  # services.openssh.enable = true;
+  # services.openssh.permitRootLogin = "yes";
+
+  # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  services.openssh.permitRootLogin = "yes";
+
+  # Enable DBus
+  services.dbus.enable    = true;
+
+  # Replace ntpd by timesyncd
+  services.timesyncd.enable = true;
 
   # Creates a "nix" user with password-less sudo access
   users = {
-    extraGroups = [ { name = "nix"; } ];
+    extraGroups = [ { name = "nixos"; } ];
     extraUsers  = [
       # Try to avoid ask password
-      { name = "root"; password = "nix"; }
+      { name = "root"; password = "nixos"; }
       {
         description     = "Nix User";
-        name            = "nix";
-        group           = "nix";
+        name            = "nixos";
+        group           = "nixos";
         extraGroups     = [ "users" "wheel" ];
-        password        = "nix";
-        home            = "/home/nix";
+        password        = "nixos";
+        home            = "/home/nixos";
         createHome      = true;
         useDefaultShell = true;
         isNormalUser    = true;
