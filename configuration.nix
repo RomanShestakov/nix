@@ -27,9 +27,10 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  systemd.services.sshd.wantedBy = lib.mkOverride 40 [ "multi-user.targe" ];
 
   # Enable DBus
-  services.dbus.enable    = true;
+  services.dbus.enable = true;
 
   # Replace ntpd by timesyncd
   services.timesyncd.enable = true;
@@ -39,14 +40,14 @@
     extraGroups = [ { name = "nixos"; } ];
     extraUsers  = [
       # Try to avoid ask password
-      { name = "root"; password = "nixos"; }
+      { name = "root";
+        hashedPassword = ""; }
       {
         description     = "Nix User";
-        name            = "nixos";
-        group           = "nixos";
+        name            = "nix";
+        group           = "nix";
         extraGroups     = [ "users" "wheel" ];
-        password        = "nixos";
-        home            = "/home/nixos";
+        home            = "/home/nix";
         createHome      = true;
         useDefaultShell = true;
         isNormalUser    = true;
