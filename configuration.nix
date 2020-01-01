@@ -30,7 +30,7 @@
     extraGroups = [ { name = "nix"; } ];
     extraUsers  = [
       # Try to avoid ask password
-      #{ name = "root"; password = "nix"; }
+      { name = "root"; password = "nix"; }
       {
         description     = "Nix User";
         name            = "nix";
@@ -41,6 +41,7 @@
         createHome      = true;
         useDefaultShell = true;
         isNormalUser    = true;
+        openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDMwVl1IL4OuXhfAEsZ538G2Z1y+asNgeCqwjFh5qaZEI69sG+GG+RclUiZ24zOVZCwbJlERuF4E4dzs2XllAoJUp0ZSAbiVBT48ITNpf3NHrIXSMNq8OqB358Fp9EBcYkyRslA2GnfWGCJXDNmsFOI8cJEh3CiEEixJY8kucubpX/PgXMUc05TjHrCHnqfKzOSC990O7qt0ymFC4Mp0iOVTmX6rTgaWBg1iPDhFK+dLAyYPsAp/b5cl97Rr86+/kw9/j5D0kuHLMbkEV0JAjCYvHUu08WaHowgpSV8TegvJ+6/EWIEwn7sOZW6FvHcY0UJhhjAhGzOFzirkeGMogOp nix@install.local" ];
       }
     ];
   };
