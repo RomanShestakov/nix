@@ -6,31 +6,45 @@
     ./custom-configuration.nix
  ];
 
-swapDevices = [ { device = "/swapfile"; size = 1024; } ];
+  # # Use the GRUB 2 boot loader.
+  # boot.loader.grub.enable = true;
+  # boot.loader.grub.version = 2;
+  # boot.loader.grub.device = "/dev/sda";
 
-boot.kernelParams = [ "cma=32M" ];
-boot.cleanTmpDir = true;
-services.openssh.enable = true;
-services.openssh.permitRootLogin = "yes";
+  # # remove the fsck that runs at startup. It will always fail to run, stopping
+  # # your boot until you press *.
+  # boot.initrd.checkJournalingFS = false;
 
-# Creates a "nix" user with password-less sudo access
-users = {
-  extraGroups = [ { name = "nix"; } ];
-  extraUsers  = [
-    # Try to avoid ask password
-    { name = "root"; password = "nix"; }
-    {
-      description     = "Nix User";
-      name            = "nix";
-      group           = "nix";
-      extraGroups     = [ "users" "wheel" ];
-      password        = "nix";
-      home            = "/home/nix";
-      createHome      = true;
-      useDefaultShell = true;
-    }
-  ];
-};
+  # NixOS wants to enable GRUB by default
+  boot.loader.grub.enable = false;
+  # Enables the generation of /boot/extlinux/extlinux.conf
+  boot.loader.generic-extlinux-compatible.enable = true;
+
+  boot.kernelParams = [ "cma=32M" ];
+  boot.cleanTmpDir = true;
+  services.openssh.enable = true;
+  services.openssh.permitRootLogin = "yes";
+
+  # Creates a "nix" user with password-less sudo access
+  users = {
+    extraGroups = [ { name = "nix"; } ];
+    extraUsers  = [
+      # Try to avoid ask password
+      { name = "root"; password = "nix"; }
+      {
+        description     = "Nix User";
+        name            = "nix";
+        group           = "nix";
+        extraGroups     = [ "users" "wheel" ];
+        password        = "nix";
+        home            = "/home/nix";
+        createHome      = true;
+        useDefaultShell = true;
+      }
+    ];
+  };
+
+  swapDevices = [ { device = "/swapfile"; size = 1024; } ];
 
 # fileSystems = {
 #     "/boot" = {
