@@ -32,14 +32,14 @@ users = {
   ];
 };
 
-fileSystems = {
-    "/boot" = {
-      device = "/dev/disk/by-label/NIXOS_BOOT";
-      fsType = "vfat";
-    };
-    "/" = {
-      device = "/dev/disk/by-label/NIXOS_SD";
-      fsType = "ext4";
-    };
-  };
+# fileSystems = {
+#     "/boot" = {
+#       device = "/dev/disk/by-label/NIXOS_BOOT";
+#       fsType = "vfat";
+#     };
+#     "/" = {
+#       device = "/dev/disk/by-label/NIXOS_SD";
+#       fsType = "ext4";
+#     };
+#   };
 }
