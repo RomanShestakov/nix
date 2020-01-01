@@ -30,7 +30,7 @@
     extraGroups = [ { name = "nix"; } ];
     extraUsers  = [
       # Try to avoid ask password
-      { name = "root"; password = "nix"; }
+      #{ name = "root"; password = "nix"; }
       {
         description     = "Nix User";
         name            = "nix";
@@ -40,8 +40,14 @@
         home            = "/home/nix";
         createHome      = true;
         useDefaultShell = true;
+        isNormalUser    = true;
       }
     ];
+  };
+
+  security.sudo = {
+    enable = true;
+    wheelNeedsPassword = false;
   };
 
   swapDevices = [ { device = "/swapfile"; size = 1024; } ];
