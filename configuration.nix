@@ -27,6 +27,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.openssh.authorizedKeysFiles = [".ssh/authorized_keys"];
   systemd.services.sshd.wantedBy = lib.mkOverride 40 [ "multi-user.targe" ];
 
   # Enable DBus
@@ -35,31 +36,31 @@
   # Replace ntpd by timesyncd
   services.timesyncd.enable = true;
 
-  # Creates a "nix" user with password-less sudo access
+  # Creates a "nixos" user with password-less sudo access
   users = {
     extraGroups = [ { name = "nixos"; } ];
     extraUsers  = [
       # Try to avoid ask password
-      { name = "root";
-        hashedPassword = ""; }
+      # { name = "root";
+      #   hashedPassword = ""; }
       {
-        description     = "Nix User";
-        name            = "nix";
-        group           = "nix";
+        description     = "Nixos User";
+        name            = "nixos";
+        group           = "nixos";
         extraGroups     = [ "users" "wheel" ];
-        home            = "/home/nix";
+        home            = "/home/nixos";
         createHome      = true;
         useDefaultShell = true;
         isNormalUser    = true;
-        openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDMwVl1IL4OuXhfAEsZ538G2Z1y+asNgeCqwjFh5qaZEI69sG+GG+RclUiZ24zOVZCwbJlERuF4E4dzs2XllAoJUp0ZSAbiVBT48ITNpf3NHrIXSMNq8OqB358Fp9EBcYkyRslA2GnfWGCJXDNmsFOI8cJEh3CiEEixJY8kucubpX/PgXMUc05TjHrCHnqfKzOSC990O7qt0ymFC4Mp0iOVTmX6rTgaWBg1iPDhFK+dLAyYPsAp/b5cl97Rr86+/kw9/j5D0kuHLMbkEV0JAjCYvHUu08WaHowgpSV8TegvJ+6/EWIEwn7sOZW6FvHcY0UJhhjAhGzOFzirkeGMogOp nix@install.local" ];
+        openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDMwVl1IL4OuXhfAEsZ538G2Z1y+asNgeCqwjFh5qaZEI69sG+GG+RclUiZ24zOVZCwbJlERuF4E4dzs2XllAoJUp0ZSAbiVBT48ITNpf3NHrIXSMNq8OqB358Fp9EBcYkyRslA2GnfWGCJXDNmsFOI8cJEh3CiEEixJY8kucubpX/PgXMUc05TjHrCHnqfKzOSC990O7qt0ymFC4Mp0iOVTmX6rTgaWBg1iPDhFK+dLAyYPsAp/b5cl97Rr86+/kw9/j5D0kuHLMbkEV0JAjCYvHUu08WaHowgpSV8TegvJ+6/EWIEwn7sOZW6FvHcY0UJhhjAhGzOFzirkeGMogOp nixos@install.local" ];
       }
     ];
   };
 
-  security.sudo = {
-    enable = true;
-    wheelNeedsPassword = false;
-  };
+  # security.sudo = {
+  #   enable = true;
+  #   wheelNeedsPassword = false;
+  # };
 
   swapDevices = [ { device = "/swapfile"; size = 1024; } ];
 
