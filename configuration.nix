@@ -28,7 +28,7 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   #services.openssh.authorizedKeysFiles = [".ssh/authorized_keys"];
-  systemd.services.sshd.wantedBy = lib.mkOverride 40 [ "multi-user.targe" ];
+  #systemd.services.sshd.wantedBy = lib.mkOverride 40 [ "multi-user.targe" ];
 
   # Enable DBus
   services.dbus.enable = true;
@@ -36,12 +36,12 @@
   # Replace ntpd by timesyncd
   services.timesyncd.enable = true;
 
-  users.mutableUsers = false;
+  #users.mutableUsers = false;
   users.users.root = {
-    hashedPassword = "$6$6L8d975814R3e$VorQV1ASoHzNLISbkO.4cIGrkajPh/JwC6VT5iwczkJg7uy4mmIEAkifRQknoZMg8N27Em8nXW2YerLQdCHOZ0";
+    password = "nix";
   };
   users.users.nixos = {
-    hashedPassword = "$6$Rbpa1NRccwfNtOd$/pjf1tLe2w5555nc7AvbozFEtjkThAnJ1QolcBF6KCJxA8oJhZGXKZslWdO7DQDVzb.F5gVF4dELMoSadtW4x0";
+    password = "nixos";
   };
 
   users.extraGroups = [ { name = "nix"; } ];
@@ -54,7 +54,7 @@
     useDefaultShell = true;
     isNormalUser    = true;
     openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDMwVl1IL4OuXhfAEsZ538G2Z1y+asNgeCqwjFh5qaZEI69sG+GG+RclUiZ24zOVZCwbJlERuF4E4dzs2XllAoJUp0ZSAbiVBT48ITNpf3NHrIXSMNq8OqB358Fp9EBcYkyRslA2GnfWGCJXDNmsFOI8cJEh3CiEEixJY8kucubpX/PgXMUc05TjHrCHnqfKzOSC990O7qt0ymFC4Mp0iOVTmX6rTgaWBg1iPDhFK+dLAyYPsAp/b5cl97Rr86+/kw9/j5D0kuHLMbkEV0JAjCYvHUu08WaHowgpSV8TegvJ+6/EWIEwn7sOZW6FvHcY0UJhhjAhGzOFzirkeGMogOp nix@install.local" ];
-    hashedPassword = "$6$5l8ovTuAbtT9tJC7$6QkQohPfZOxrZPURqM4CSWrLCzhU2sEDPQ01DgL0nq5GcMbMjtzaHgjdZAbN7qu5QZuN0gN6nvwT6syqWKNa9.";
+    password = "nix";
   };
 
   # security.sudo = {
