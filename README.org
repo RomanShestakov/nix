@@ -10,7 +10,7 @@ models from example at https://github.com/jluttine/nixos-configuration
 ** write to flashcard with balenaEtcher
 ** edit file cmdline.txt:
 #+BEGIN_SRC
-# add - cma=256M console=ttyS0,115200n8 console=ttyAMA0,115200n8 console=tty0
+# add - console=ttyS0,115200n8 console=ttyAMA0,115200n8 console=tty0
 # e.g.
 cma=256M console=ttyS0,115200n8 console=ttyAMA0,115200n8 console=tty0 loglevel=7 init=/nix/store/xs0jp3xlv3yhsdnmscwykkrrlria5d9d-nixos-system-aira-rpi4-20.03pre206091.acb4d2362e8/init
 #+END_SRC
