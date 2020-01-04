@@ -36,21 +36,21 @@
   # Replace ntpd by timesyncd
   services.timesyncd.enable = true;
 
-  users = {
-    mutableUsers = false;
-    users  =  {
-      nix = {
-        description     = "Nix User";
-        name            = "nix";
-        group           = "nix";
-        extraGroups     = [ "users" "wheel" ];
-        home            = "/home/nix";
-        createHome      = true;
-        useDefaultShell = true;
-        isNormalUser    = true;
-        openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDMwVl1IL4OuXhfAEsZ538G2Z1y+asNgeCqwjFh5qaZEI69sG+GG+RclUiZ24zOVZCwbJlERuF4E4dzs2XllAoJUp0ZSAbiVBT48ITNpf3NHrIXSMNq8OqB358Fp9EBcYkyRslA2GnfWGCJXDNmsFOI8cJEh3CiEEixJY8kucubpX/PgXMUc05TjHrCHnqfKzOSC990O7qt0ymFC4Mp0iOVTmX6rTgaWBg1iPDhFK+dLAyYPsAp/b5cl97Rr86+/kw9/j5D0kuHLMbkEV0JAjCYvHUu08WaHowgpSV8TegvJ+6/EWIEwn7sOZW6FvHcY0UJhhjAhGzOFzirkeGMogOp nix@install.local" ];
-      };
-    };
+  users.mutableUsers = false;
+  users.users.root = {
+    hashedPassword = "$6$6L8d975814R3e$VorQV1ASoHzNLISbkO.4cIGrkajPh/JwC6VT5iwczkJg7uy4mmIEAkifRQknoZMg8N27Em8nXW2YerLQdCHOZ0";
+  };
+
+  users.users.nix = {
+    description     = "Nix User";
+    group           = "nix";
+    extraGroups     = [ "users" "wheel" ];
+    home            = "/home/nix";
+    createHome      = true;
+    useDefaultShell = true;
+    isNormalUser    = true;
+    openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDMwVl1IL4OuXhfAEsZ538G2Z1y+asNgeCqwjFh5qaZEI69sG+GG+RclUiZ24zOVZCwbJlERuF4E4dzs2XllAoJUp0ZSAbiVBT48ITNpf3NHrIXSMNq8OqB358Fp9EBcYkyRslA2GnfWGCJXDNmsFOI8cJEh3CiEEixJY8kucubpX/PgXMUc05TjHrCHnqfKzOSC990O7qt0ymFC4Mp0iOVTmX6rTgaWBg1iPDhFK+dLAyYPsAp/b5cl97Rr86+/kw9/j5D0kuHLMbkEV0JAjCYvHUu08WaHowgpSV8TegvJ+6/EWIEwn7sOZW6FvHcY0UJhhjAhGzOFzirkeGMogOp nix@install.local" ];
+    hashedPassword = "$6$5l8ovTuAbtT9tJC7$6QkQohPfZOxrZPURqM4CSWrLCzhU2sEDPQ01DgL0nq5GcMbMjtzaHgjdZAbN7qu5QZuN0gN6nvwT6syqWKNa9.";
   };
 
   # security.sudo = {
