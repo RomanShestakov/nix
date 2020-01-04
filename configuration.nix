@@ -40,7 +40,11 @@
   users.users.root = {
     hashedPassword = "$6$6L8d975814R3e$VorQV1ASoHzNLISbkO.4cIGrkajPh/JwC6VT5iwczkJg7uy4mmIEAkifRQknoZMg8N27Em8nXW2YerLQdCHOZ0";
   };
+  users.users.nixos = {
+    hashedPassword = "$6$Rbpa1NRccwfNtOd$/pjf1tLe2w5555nc7AvbozFEtjkThAnJ1QolcBF6KCJxA8oJhZGXKZslWdO7DQDVzb.F5gVF4dELMoSadtW4x0";
+  };
 
+  users.extraGroups = [ { name = "nix"; } ];
   users.users.nix = {
     description     = "Nix User";
     group           = "nix";
