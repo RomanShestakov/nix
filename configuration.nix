@@ -46,7 +46,7 @@
   services.dbus.enable    = true;
 
   # Replace ntpd by timesyncd
-  services.timesyncd.enable = true
+  services.timesyncd.enable = true;
 
   # Configure basic SSH access
   services.openssh.enable = true;
