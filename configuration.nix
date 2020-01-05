@@ -39,9 +39,6 @@
 
   # Services to enable:
 
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
   # Enable DBus
   services.dbus.enable    = true;
 
