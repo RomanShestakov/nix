@@ -37,6 +37,17 @@
   nix.gc.options = "--delete-older-than 30d";
   boot.cleanTmpDir = true;
 
+  # Services to enable:
+
+  # Enable the OpenSSH daemon.
+  services.openssh.enable = true;
+
+  # Enable DBus
+  services.dbus.enable    = true;
+
+  # Replace ntpd by timesyncd
+  services.timesyncd.enable = true
+
   # Configure basic SSH access
   services.openssh.enable = true;
   services.openssh.permitRootLogin = "yes";
