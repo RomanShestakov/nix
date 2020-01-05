@@ -2,6 +2,7 @@
 {
   # NixOS wants to enable GRUB by default
   boot.loader.grub.enable = false;
+  boot.initrd.checkJournalingFS = false;
 
   # if you have a Raspberry Pi 2 or 3, pick this:
   boot.kernelPackages = pkgs.linuxPackages_latest;
